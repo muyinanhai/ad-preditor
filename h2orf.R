@@ -27,7 +27,7 @@ for (col in feature.names){
   test[[col]] <- as.numeric(test[[col]])
 }
 
-h2o.init(nthreads=-1,max_mem_size='60G')
+h2o.init(nthreads=-1,max_mem_size='6G')
 trainHex<-as.h2o(train)
 clf <- h2o.randomForest(x=feature.names,
                           y="target", 
