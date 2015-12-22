@@ -8,7 +8,8 @@
 	train.sql
 	test.sql
 	submit.sql
-	这三个文件用于统计特征，为了方便，这里复制成三个，除了数据统计的时间不一样，内容是一致的（submit缺少target)，要求：特征必须要使用
+	这三个文件用于统计特征，为了方便，这里复制成三个，除了数据统计的时间不一样，内容是一致的（submit缺少target)
+	要求：必须要使用以下的模式
 	drop table if exists ...
 	create table ...
 
