@@ -1,0 +1,56 @@
+
+代码共分成4块：
+
+1：数据预处理
+
+	该模块主要是使用Hadoop以及Hive平台进行数据的统计；其中涉及到的特征合并脚本采用的是Python编写；数据导出使用的shell脚本；
+
+	train.sql
+	test.sql
+	submit.sql
+	这三个文件用于统计特征，为了方便，这里复制成三个，除了数据统计的时间不一样，内容是一致的（submit缺少target)，要求：特征必须要使用
+	drop table if exists ...
+	create table ...
+
+	combine2sql.py
+	安装python 依赖：
+	regex: pip install regex
+
+	将train.sql中的特征组合起来，得到一个大表的sql语句,保存到combine_features.sql文件中;
+
+	sample.sql
+	根据统计结果，对0 和 1的数据按照比例采样，此处采用1:10采样。（样本为1万多，需要修改说明文档）
+
+	export_to_csv.sh
+	shell脚本导出采样数据
+
+
+注：SQL按照SQL的格式要求之后，可以直接在hive client中source file.sql 就可以执行相应的SQL语句;
+
+2：模型训练
+
+	xgboost.R
+	h2orf.R
+
+	采用的R语言进行模型的训练
+	xgboost.R 为xgboost模型
+	h2orf.R 为 h2o的Random Forest模型的代码
+
+	使用:
+	Rscript xgboost.R
+	Rscript h2orf.R
+
+3：模型融合
+	blend.py
+	对同一个目录下的文件做blending，保存成blending.csv
+	weighted_blend.py
+	对同一个目录下的文件做带权blending，格式要求，name-weight.csv
+
+4：数据结果阈值调整以及格式转换
+	laterprocessing.py
+	安装python 依赖：
+	numpy：pip install numpy
+	pandas: pip install pandas
+
+	使用：
+	python laterprocessing.py submit_out.file threshold
