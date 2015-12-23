@@ -36,7 +36,13 @@
 	采用的R语言进行模型的训练
 	xgboost.R 为xgboost模型
 	h2orf.R 为 h2o的Random Forest模型的代码
-
+	
+	依赖：readr, data.table, xgboost, caret, h2o
+	install.packages("readr")
+	install.packages("data.table")
+	install.packages("xgboost")
+	install.packages("caret")
+	install.packages("h2o")
 	使用:
 	Rscript xgboost.R
 	Rscript h2orf.R
